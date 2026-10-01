@@ -1,4 +1,4 @@
-name: Spotify Related Artists Crawler
+name: Spotify Related Artists Crawler 
 
 on:
   workflow_dispatch:
