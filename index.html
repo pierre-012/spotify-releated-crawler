@@ -5,22 +5,83 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artistes Spotify</title>
 <style>
-body{font-family:system-ui,sans-serif;max-width:1200px;margin:0 auto;padding:24px;background:#fafafa}
-header{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
-h1{margin-bottom:6px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px}
-.value{font-size:28px;font-weight:700}
-input,select{box-sizing:border-box;padding:12px;border:1px solid #bbb;border-radius:8px;background:#fff}
+:root{
+  --bg:#0b0f0d;
+  --panel:#141a17;
+  --panel-2:#1b2320;
+  --line:#26312c;
+  --text:#eef5f1;
+  --muted:#8fa399;
+  --accent:#1ed760;
+  --accent-soft:rgba(30,215,96,.14);
+}
+*{box-sizing:border-box}
+body{
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  max-width:1200px;margin:0 auto;padding:32px 24px 60px;
+  color:var(--text);
+  background:
+    radial-gradient(900px 400px at 85% -10%,rgba(30,215,96,.16),transparent 60%),
+    radial-gradient(700px 350px at -10% 0%,rgba(30,215,96,.08),transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+  min-height:100vh;
+}
+header{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;flex-wrap:wrap}
+h1{
+  margin:0 0 8px;font-size:34px;letter-spacing:-.02em;
+  background:linear-gradient(90deg,#fff,var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.controls{display:flex;gap:10px;min-width:380px;flex:1;max-width:560px}
+input,select{
+  padding:12px 14px;border:1px solid var(--line);border-radius:12px;
+  background:var(--panel);color:var(--text);font-size:14px;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
 input{width:100%}
-.controls{display:flex;gap:10px;min-width:380px}
-table{width:100%;border-collapse:collapse;margin-top:16px;background:#fff;border:1px solid #ddd}
-th,td{padding:12px;border-bottom:1px solid #ddd;text-align:left}
-th{background:#f5f5f5}
-a{color:inherit}
-.small{color:#666;font-size:13px}
-.badge{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700;background:#e8f5e9;color:#2e7d32}
-.empty{text-align:center;padding:40px;color:#666}
+input::placeholder{color:var(--muted)}
+input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:28px 0}
+.card{
+  background:linear-gradient(160deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);border-radius:16px;padding:18px;
+  transition:transform .15s,border-color .15s;
+}
+.card:hover{transform:translateY(-2px);border-color:rgba(30,215,96,.5)}
+.card .small{text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.value{font-size:30px;font-weight:700;margin-top:6px;letter-spacing:-.02em}
+.card:first-child .value{color:var(--accent)}
+table{
+  width:100%;border-collapse:separate;border-spacing:0;margin-top:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+}
+th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left}
+th{
+  background:var(--panel-2);color:var(--muted);font-size:11px;
+  text-transform:uppercase;letter-spacing:.08em;font-weight:600;
+}
+tbody tr{transition:background .12s}
+tbody tr:hover{background:rgba(30,215,96,.06)}
+tr:last-child td{border-bottom:none}
+a{
+  color:var(--accent);text-decoration:none;font-weight:600;font-size:13px;
+  padding:6px 12px;border:1px solid rgba(30,215,96,.4);border-radius:999px;
+  transition:background .15s,color .15s;
+}
+a:hover{background:var(--accent);color:#04120a}
+.small{color:var(--muted);font-size:13px}
+.badge{
+  display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;
+  background:var(--accent-soft);color:var(--accent);
+}
+.empty{text-align:center;padding:48px;color:var(--muted)}
+@media (max-width:700px){
+  body{padding:20px 14px}
+  .controls{min-width:0;width:100%;max-width:none}
+  th,td{padding:10px}
+}
 </style>
 </head>
 <body>
